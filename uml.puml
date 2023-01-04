@@ -1,0 +1,91 @@
+@startuml Final-project Diagram
+
+
+  class user{
+    +id : String PK
+    +email : String 
+    +first_name : String 
+    +last_name : String 
+    +birth_date : Date
+    }
+
+  
+  class shipment_info{
+    +id : String PK
+    +country : String 
+    +city : String 
+    +street : String
+    +appartment : String
+    +zip_code : String 
+    +phone : String 
+    }
+
+  class order_details{
+    +order_id : String 
+    +product_id : String 
+    +quantity : Number
+    }
+  class order{
+    +id : String PK
+    +user_id:String
+    +date : Date 
+    +total : String 
+    +shipment_id : String 
+    ?status : String 
+    }
+
+
+  order<-shipment_info
+order<- user
+  
+
+order_details<-- product
+order_details<-- order
+
+class product{
+  +id : String PK
+  +name : String 
+  +price : String 
+  +description : String 
+  +additional_info : String
+  +images_url : urls
+  +category_id : String 
+  +is_in_storage : Boolean
+  +rating : Number (1-5)
+  
+  ' +addToCart() 
+  ' +addToWishList() 
+  ?reviews : List<Review>
+}
+class category{
+  +id : String PK
+  +name : String 
+  +description : String
+  ' +filter(price, rating, isInStorage, quantity) 
+}
+class wish_list{
+  +id: String PK
+  +user_id : String
+}
+class wish_list_details{
+  +wish_list_id : String 
+  +product_id : String 
+}
+class cart{
+  +id: String PK
+  +user_id : String
+  +total : Float
+}
+class cart_details{
+  +cart_id : String
+  +product_id : String
+  +quantity : Number
+  +discount : Float  
+}
+wish_list_details<- wish_list
+cart_details<- cart
+cart<-down- user
+wish_list<-down- user
+product <-up- category
+
+@enduml
