@@ -1,4 +1,6 @@
+const Cart = require('../models/Cart');
 const User = require('../models/User');
+const WishList = require('../models/WishList');
 
 module.exports = {
   async getUser(req) {
@@ -35,6 +37,8 @@ module.exports = {
       const isUser = await this.getUser(req);
       if (!isUser) {
         const user = await User.create({ email, password, first_name, last_name, birth_date });
+        await Cart.create({ user_id: user.id, total: 0 });
+        await WishList.create({ user_id: user.id });
         res.status(200).send(user);
       } else {
         res.status(401).send('User already exists');

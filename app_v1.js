@@ -44,33 +44,33 @@
 //   console.log('connected as id ' + connection.threadId);
 // });
 
-app.post("/api/sign-in", (req, res, next) => {
-  const { email, password } = req.body;
+// app.post("/api/sign-in", (req, res, next) => {
+//   const { email, password } = req.body;
 
-  if (email && password) { next() } else { res.status(401); res.send("missing parameters") };
-});
-app.post("/api/sign-in", (req, res) => {
-  const { email, password } = req.body;
-  connection.query(`select * from user where email = "${email}" and password = "${password}";`, (err, results) => {
-    if (err) { res.send("error request"); res.statusCode = 403 } else if (results.length < 1) { res.send("user does not exist"); res.statusCode = 402 }
-    else {
-      req.session.userID = results[0];
-      res.status(200);
-      res.send("done");
-    };
-  });
-});
+//   if (email && password) { next() } else { res.status(401); res.send("missing parameters") };
+// });
+// app.post("/api/sign-in", (req, res) => {
+//   const { email, password } = req.body;
+//   connection.query(`select * from user where email = "${email}" and password = "${password}";`, (err, results) => {
+//     if (err) { res.send("error request"); res.statusCode = 403 } else if (results.length < 1) { res.send("user does not exist"); res.statusCode = 402 }
+//     else {
+//       req.session.userID = results[0];
+//       res.status(200);
+//       res.send("done");
+//     };
+//   });
+// });
 
-app.post("/api/sign-up", (req, res, next) => {
-  const { first_name, last_name, email, password, birthday } = req.body;
-  if (first_name && last_name && email && password && birthday) { next() } else { res.send("missing parameters").status(405) };
-});
-app.post("/api/sign-up", (req, res, next) => {
-  const { first_name, last_name, email, password, birthday } = req.body;
-  connection.query(`select * from user where email = "${email}" and password = "${password}"`, (err, results) => {
-    if (err) { res.send(err); res.status(401) } else if (results.length < 1) { next() } else { console.log("EXISTS"); res.send("user already exists") };
-  });
-})
+// app.post("/api/sign-up", (req, res, next) => {
+//   const { first_name, last_name, email, password, birthday } = req.body;
+//   if (first_name && last_name && email && password && birthday) { next() } else { res.send("missing parameters").status(405) };
+// });
+// app.post("/api/sign-up", (req, res, next) => {
+//   const { first_name, last_name, email, password, birthday } = req.body;
+//   connection.query(`select * from user where email = "${email}" and password = "${password}"`, (err, results) => {
+//     if (err) { res.send(err); res.status(401) } else if (results.length < 1) { next() } else { console.log("EXISTS"); res.send("user already exists") };
+//   });
+// })
 app.post("/api/sign-up", (req, res) => {
   const { first_name, last_name, email, password, birthday } = req.body;
   connection.query(
