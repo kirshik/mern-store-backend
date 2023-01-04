@@ -39,7 +39,8 @@ module.exports = {
         const user = await User.create({ email, password, first_name, last_name, birth_date });
         await Cart.create({ user_id: user.id, total: 0 });
         await WishList.create({ user_id: user.id });
-        res.status(200).send(user);
+        res.session.userID = user;
+        res.status(200).send("User created");
       } else {
         res.status(401).send('User already exists');
       };
