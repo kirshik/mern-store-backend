@@ -15,6 +15,8 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const productRouter = require('./routes/products');
 const categoriesRouter = require('./routes/categories');
+const signInRouter = require('./routes/signIn');
+const signOutRouter = require('./routes/signOut');
 
 const app = express();
 const db = require('./database/database.js');
@@ -59,6 +61,8 @@ app.use('/', indexRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/products', productRouter);
 app.use('/api/categories', categoriesRouter);
+app.use('/api/sign-in', signInRouter);
+app.use('/api/sign-out', signOutRouter);
 
 
 
