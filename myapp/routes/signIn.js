@@ -5,7 +5,7 @@ const router = express.Router();
 
 // middleware
 router.use((req, res, next) => {
-  userValidator.validateSignIn(req, res, next);
+  //userValidator.validateSignIn(req, res, next);
   next();
 });
 

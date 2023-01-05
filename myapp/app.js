@@ -11,12 +11,12 @@ const bodyParser = require('body-parser');
 const session = require("express-session");
 //---------------------//
 
-const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
+
 const productRouter = require('./routes/products');
 const categoriesRouter = require('./routes/categories');
 const signInRouter = require('./routes/signIn');
 const signOutRouter = require('./routes/signOut');
+const cartRouter = require('./routes/cart');
 
 const app = express();
 const db = require('./database/database.js');
@@ -57,12 +57,11 @@ db.authenticate().then(() => {
 
 
 
-app.use('/', indexRouter);
-app.use('/api/users', usersRouter);
 app.use('/api/products', productRouter);
 app.use('/api/categories', categoriesRouter);
 app.use('/api/sign-in', signInRouter);
 app.use('/api/sign-out', signOutRouter);
+app.use('/api/cart', cartRouter);
 
 
 
