@@ -1,12 +1,13 @@
 const express = require('express');
 const ProductController = require('../controllers/ProductController');
+const productValidator = require('../validators/productValidator');
 var router = express.Router();
 
 // middleware 
 router.use((req, res, next) => {
-  //validations
-  console.log(req.originalUrl);
-  next();
+  if (req.params.id) productValidator.validateId(req, res, next);
+  if (req.params.limit) productValidator.validateLimit(req, res, next);
+  if (!req.params.id && !req.params.limit) next();
 });
 
 // routes

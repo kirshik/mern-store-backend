@@ -3,7 +3,7 @@ const router = express.Router();
 
 // middleware
 router.use((req, res, next) => {
-  // validatons
+  userValidator.validateSignUp(req, res, next);
   next();
 });
 

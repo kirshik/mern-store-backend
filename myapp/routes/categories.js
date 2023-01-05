@@ -1,10 +1,11 @@
 const express = require('express');
 const CategoriesController = require('../controllers/CategoriesController');
+const categoryValidator = require('../validators/categoryValidator');
 const router = express.Router();
 
 // middleware
-router.use((req, res, next) => {
-  // validatons
+router.get('/:id', (req, res, next) => {
+  categoryValidator.validateId(req, res, next);
   next();
 });
 
