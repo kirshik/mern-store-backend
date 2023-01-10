@@ -39,5 +39,21 @@ module.exports = {
       res.status(500).send("Server error");
     }
   },
-  async removeFromWishList(req, res) { }
+  async removeFromWishList(req, res) {
+    try {
+      const { id } = req.session.userID;
+      const { product_id } = req.body;
+      const wishList = await WishList.findOne({ where: { user_id: id } });
+      const wishListDetails = await WishListDetails.findOne({ where: { wish_list_id: wishList.id, product_id } });
+      if (wishListDetails) {
+        await wishListDetails.destroy();
+        res.status(200).send("Product removed from wish list");
+      } else {
+        res.status(400).send("Product not in wish list");
+      }
+    } catch (e) {
+      console.log(e);
+      res.status(500).send("Server error");
+    }
+  }
 };

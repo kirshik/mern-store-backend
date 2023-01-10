@@ -9,13 +9,13 @@ router.use((req, res, next) => {
 });
 
 router.get('/', (req, res) => {
-  CartController.getCart(req, res);
+  WishListController.getWishList(req, res);
 });
 router.delete('/delete', (req, res) => {
-  CartController.removeFromCart(req, res);
+  WishListController.removeFromWishList(req, res);
 });
 router.post('/add', (req, res) => {
-  CartController.addToCart(req, res);
+  WishListController.addToWishList(req, res);
 });
 
 
