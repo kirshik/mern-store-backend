@@ -1,3 +1,4 @@
+const UserController = require("../controllers/UserController");
 
 
 module.exports = {
@@ -30,7 +31,11 @@ module.exports = {
       res.status(400).send('Invalid password, password should be at least 8 characters long and contain at least one uppercase letter, one lowercase letter and one number');
     }
     if (this.validateEmail(email) && this.validatePassword(password)) {
-      next();
+      if (UserController.getUser(req)) {
+        next();
+      } else {
+        res.status(400).send('Invalid credentials');
+      }
     }
   },
   validateSignUp(req, res, next) {
@@ -51,7 +56,11 @@ module.exports = {
       res.status(400).send('Invalid birth date, birth date should be in the format YYYY-MM-DD');
     };
     if (this.validateEmail(email) && this.validatePassword(password) && this.validateFirstName(first_name) && this.validateLastName(last_name) && this.validateBirthDate(birth_date)) {
-      next();
+      if (UserController.getUser(req)) {
+        res.status(400).send('User already exists');
+      } else {
+        next();
+      }
     };
   }
 }

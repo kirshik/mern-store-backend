@@ -1,5 +1,7 @@
 const sequelize = require("../database/database.js");
 const { DataTypes } = require("sequelize");
+const CartDetails = require("./CartDetails.js");
+const WishListDetails = require("./WishListDetails.js");
 
 const Products = sequelize.define("products", {
   id: {
@@ -20,5 +22,8 @@ const Products = sequelize.define("products", {
   freezeTableName: true,
   timestamps: false
 });
+Products.belongsTo(CartDetails, { foreignKey: "id", targetKey: "product_id" });
+Products.belongsTo(WishListDetails, { foreignKey: "id", targetKey: "product_id" });
+
 
 module.exports = Products;

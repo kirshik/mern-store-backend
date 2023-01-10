@@ -1,5 +1,7 @@
 const sequelize = require("../database/database.js");
 const { DataTypes } = require("sequelize");
+const CartDetails = require("./CartDetails.js");
+
 
 const Cart = sequelize.define("cart", {
   id: {
@@ -14,5 +16,6 @@ const Cart = sequelize.define("cart", {
   freezeTableName: true,
   timestamps: false
 });
+
 
 module.exports = Cart;
