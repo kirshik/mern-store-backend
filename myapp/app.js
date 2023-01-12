@@ -47,7 +47,7 @@ app.use(
     name: "userID",
     secret: "GFGEnter", // Secret key,
     saveUninitialized: false,
-    resave: false,
+    resave: true,
     cookie: { httpOnly: false }
   })
 );

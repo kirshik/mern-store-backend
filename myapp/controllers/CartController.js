@@ -8,7 +8,6 @@ module.exports = {
   async getCart(req, res) {
     const { id } = req.session.userID;
     try {
-
       const cart_id = await Cart.findOne({ where: { user_id: id } });
       const cart = await Products.findAll({
         include: [{
@@ -18,7 +17,8 @@ module.exports = {
         }],
         attributes: ["id", "name", "price", "images_urls"]
       });
-      res.status(200).send(cart);
+
+      res.status(200).send({ cart, total: cart_id.total });
     } catch (e) {
       console.log(e);
       res.status(500).send("Server error");
@@ -46,6 +46,8 @@ module.exports = {
     try {
       const { id } = req.session.userID;
       const { product_id } = req.body;
+      console.log("AAAAAAAAAAAAAAAAA");
+      console.log("id", id, "product_id", product_id);
       const cart = await Cart.findOne({ where: { user_id: id } });
       const cartDetails = await CartDetails.findOne({ where: { cart_id: cart.id, product_id } });
       if (cartDetails) {

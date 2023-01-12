@@ -43,8 +43,10 @@ module.exports = {
     try {
       const { id } = req.session.userID;
       const { product_id } = req.body;
+      console.log("id", id, "product_id", product_id);
       const wishList = await WishList.findOne({ where: { user_id: id } });
-      const wishListDetails = await WishListDetails.findOne({ where: { wish_list_id: wishList.id, product_id } });
+      console.log("wishList", wishList.dataValues.id);
+      const wishListDetails = await WishListDetails.findOne({ where: { wish_list_id: wishList.dataValues.id, product_id } });
       if (wishListDetails) {
         await wishListDetails.destroy();
         res.status(200).send("Product removed from wish list");

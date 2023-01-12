@@ -1,5 +1,6 @@
 const express = require('express');
 const CartController = require('../controllers/CartController');
+const cookieValidator = require('../validators/cookieValidator');
 const router = express.Router();
 
 // middleware

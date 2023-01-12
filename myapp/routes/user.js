@@ -1,4 +1,5 @@
 const express = require('express');
+const cookieValidator = require('../validators/cookieValidator');
 const router = express.Router();
 
 // middleware

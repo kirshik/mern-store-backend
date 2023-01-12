@@ -5,6 +5,7 @@ const router = express.Router();
 
 // middleware
 router.use((req, res, next) => {
+  console.log(req.session)
   cookieValidator.validateCookie(req, res, next);
 });
 
