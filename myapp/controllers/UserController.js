@@ -56,5 +56,14 @@ module.exports = {
     } else {
       res.status(401).send('Not logged in');
     }
+  },
+  async getUserData(req, res) {
+    try {
+      const userInfo = req.session.userID;
+      res.status(200).send(userInfo);
+    } catch (e) {
+      console.log(e);
+      res.status(500).send(e);
+    }
   }
 };

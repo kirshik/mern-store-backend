@@ -1,5 +1,4 @@
 const express = require('express');
-const UserController = require('../controllers/UserController');
 const cookieValidator = require('../validators/cookieValidator');
 const router = express.Router();
 
@@ -9,7 +8,7 @@ router.use((req, res, next) => {
 });
 
 router.get('/', (req, res) => {
-  UserController.getUserData(req, res);
+
 });
 
 module.exports = router;
