@@ -26,12 +26,13 @@ module.exports = {
   },
   async createOrder(req, res) {
     const { id } = req.session.userID;
-    const { shipment, total, products } = req.body;
+    const { shipment_details, total, cart } = req.body;
+    console.log("cart: ", cart, "shipment_details: ", shipment_details, "total: ", total);
     try {
       const isShipment = await ShipmentInfo.findOne({ where: { user_id: id } });
-      const shipmentData = isShipment ? isShipment : await ShipmentInfo.create({ user_id: id, ...shipment });
+      const shipmentData = isShipment ? isShipment : await ShipmentInfo.create({ user_id: id, ...shipment_details });
       const orderData = await OrderData.create({ user_id: id, date: new Date(), status: "pending", total: total, shipment_id: shipmentData.id, user_id: id });
-      const orderDetails = products.map(product => {
+      const orderDetails = cart.map(product => {
         return {
           order_id: orderData.id,
           product_id: product.id,

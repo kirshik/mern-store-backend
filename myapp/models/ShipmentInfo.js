@@ -9,7 +9,7 @@ const ShipmentInfo = sequelize.define("shipment_info", {
   },
   country: DataTypes.STRING(50),
   city: DataTypes.STRING(50),
-  streer: DataTypes.STRING(50),
+  street: DataTypes.STRING(50),
   appartment: DataTypes.STRING,
   zip_code: DataTypes.STRING(20),
   phone: DataTypes.STRING(10)
