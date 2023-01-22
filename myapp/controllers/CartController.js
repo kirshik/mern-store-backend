@@ -46,8 +46,6 @@ module.exports = {
     try {
       const { id } = req.session.userID;
       const { product_id } = req.body;
-      console.log("AAAAAAAAAAAAAAAAA");
-      console.log("id", id, "product_id", product_id);
       const cart = await Cart.findOne({ where: { user_id: id } });
       const cartDetails = await CartDetails.findOne({ where: { cart_id: cart.id, product_id } });
       if (cartDetails) {
