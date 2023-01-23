@@ -16,6 +16,7 @@ const session = require("express-session");
 const categoriesRouter = require('./routes/categories');
 const productRouter = require('./routes/products');
 const signInRouter = require('./routes/signIn');
+console.log("PREVIOUS LINE");
 const signOutRouter = require('./routes/signOut');
 const cartRouter = require('./routes/cart');
 const wishListRouter = require('./routes/wishList');
