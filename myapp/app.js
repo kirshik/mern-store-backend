@@ -17,9 +17,10 @@ const categoriesRouter = require('./routes/categories');
 const productRouter = require('./routes/products');
 const signInRouter = require('./routes/signIn');
 const cartRouter = require('./routes/cart');
+
+const userRouter = require('./routes/user');
 const signOutRouter = require('./routes/signOut');
 const wishListRouter = require('./routes/wishList');
-const userRouter = require('./routes/user');
 const searchRouter = require('./routes/search');
 const orderRouter = require('./routes/order');
 
