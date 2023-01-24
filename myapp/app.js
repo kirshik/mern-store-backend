@@ -21,8 +21,8 @@ const userRouter = require('./routes/user');
 const searchRouter = require('./routes/search');
 const orderRouter = require('./routes/order');
 
-const signOutRouter = require('./routes/signOut');
-const wishListRouter = require('./routes/wishList');
+// const signOutRouter = require('./routes/signOut');
+// const wishListRouter = require('./routes/wishList');
 
 const app = express();
 const db = require('./database/database.js');
@@ -66,12 +66,12 @@ db.authenticate().then(() => {
 app.use('/api/products', productRouter);
 app.use('/api/categories', categoriesRouter);
 app.use('/api/sign-in', signInRouter);
-app.use('/api/sign-out', signOutRouter);
 app.use('/api/cart', cartRouter);
-app.use('/api/wish-list', wishListRouter);
 app.use('/api/user', userRouter);
 app.use('/api/search', searchRouter);
 app.use('/api/order', orderRouter);
+// app.use('/api/sign-out', signOutRouter);
+// app.use('/api/wish-list', wishListRouter);
 
 
 // catch 404 and forward to error handler
